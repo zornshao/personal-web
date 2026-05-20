@@ -18,16 +18,10 @@ export function PublicationsSection() {
   return (
     <section id="publications" className="py-24 bg-secondary/30">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="space-y-4 mb-12">
+        <div className="mb-12">
           <h2 className="text-3xl font-semibold text-foreground">
             {t('学术发表', 'Publications')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl">
-            {t(
-              '精选学术发表，涵盖法律社会学、数字政策与规制、知识产权法等研究领域。',
-              'Selected academic publications spanning the sociology of law, digital policy and regulation, and intellectual property law.'
-            )}
-          </p>
         </div>
 
         <Tabs defaultValue="journals" className="w-full">

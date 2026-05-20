@@ -37,16 +37,10 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="space-y-4 mb-12">
+        <div className="mb-12">
           <h2 className="text-3xl font-semibold text-foreground">
             {t('联系方式', 'Get in Touch')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl">
-            {t(
-              '如有合作、咨询或学术讨论意向，欢迎通过以下方式联系我。',
-              'Interested in collaboration, consulting, or academic discussion? Feel free to reach out through any of the channels below.'
-            )}
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">

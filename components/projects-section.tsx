@@ -16,16 +16,10 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="space-y-4 mb-12">
+        <div className="mb-12">
           <h2 className="text-3xl font-semibold text-foreground">
             {t('研究与项目', 'Research & Projects')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl">
-            {t(
-              '精选学术研究项目和行业咨询合作，涵盖技术治理、数字政策和教育社会学领域。',
-              'A selection of academic research initiatives and industry consulting engagements spanning technology governance, digital policy, and sociology of education.'
-            )}
-          </p>
         </div>
 
         {/* Academic Research */}

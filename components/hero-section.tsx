@@ -1,6 +1,6 @@
 'use client'
 
-import { Mail, Linkedin, MapPin } from 'lucide-react'
+import { Mail, Linkedin, Building2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/components/language-context'
 import { SITE_DATA } from '@/lib/site-data'
@@ -8,6 +8,8 @@ import { SITE_DATA } from '@/lib/site-data'
 export function HeroSection() {
   const { t, isEnglish } = useLanguage()
   const { personalInfo } = SITE_DATA
+
+  const bioParagraphs = isEnglish ? personalInfo.bio.en : personalInfo.bio.zh
 
   return (
     <section id="about" className="min-h-screen flex items-center pt-20">
@@ -29,22 +31,24 @@ export function HeroSection() {
             <div className="space-y-2">
               {personalInfo.affiliations.map((affiliation, index) => (
                 <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5 shrink-0" />
+                  <Building2 className="h-3.5 w-3.5 shrink-0" />
                   <span>{isEnglish ? affiliation.en : affiliation.zh}</span>
                 </div>
               ))}
             </div>
 
-            {/* Bio */}
-            <div className="prose prose-slate dark:prose-invert max-w-none">
-              <p className="text-muted-foreground leading-relaxed text-base">
-                {isEnglish ? personalInfo.bio.en : personalInfo.bio.zh}
-              </p>
+            {/* Bio — multi-paragraph */}
+            <div className="space-y-4">
+              {bioParagraphs.map((paragraph, index) => (
+                <p key={index} className="text-muted-foreground leading-relaxed text-base">
+                  {paragraph}
+                </p>
+              ))}
             </div>
 
             {/* Contact Buttons */}
             <div className="flex flex-wrap gap-3 pt-4">
-              <Button variant="default" size="sm" asChild>
+              <Button variant="outline" size="sm" asChild>
                 <a href={`mailto:${personalInfo.email}`}>
                   <Mail className="h-4 w-4 mr-2" />
                   {personalInfo.email}
@@ -63,7 +67,6 @@ export function HeroSection() {
           <div className="lg:col-span-2 flex justify-center lg:justify-end">
             <div className="relative">
               <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl bg-gradient-to-br from-secondary to-muted overflow-hidden border border-border shadow-lg">
-                {/* Photo Placeholder */}
                 <div className="w-full h-full flex items-center justify-center bg-secondary/80">
                   <div className="text-center space-y-3 p-6">
                     <div className="w-28 h-28 mx-auto rounded-full bg-muted-foreground/10 flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
@@ -77,7 +80,6 @@ export function HeroSection() {
                   </div>
                 </div>
               </div>
-              {/* Decorative Elements */}
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl" />
               <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-accent/10 rounded-full blur-3xl" />
             </div>
