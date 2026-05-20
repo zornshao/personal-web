@@ -51,8 +51,8 @@ export const SITE_DATA = {
       {
         id: "c1",
         title: { 
-          zh: "基层官僚与AI的使用：中国交通执法中"混合官僚制"的形成", 
-          en: "Street-Level Bureaucrats and the Use of AI: The Making of \"Hybrid Bureaucracy\" in Chinese Traffic Policing" 
+          zh: "基层官僚与AI的使用：中国交通执法中'混合官僚制'的形成", 
+          en: "Street-Level Bureaucrats and the Use of AI: The Making of 'Hybrid Bureaucracy' in Chinese Traffic Policing" 
         },
         conference: "2026 EASP Annual Conference",
         year: "July 2026"
