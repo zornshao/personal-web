@@ -96,7 +96,6 @@ export const SITE_DATA = {
   projects: [
     {
       id: "p1",
-      type: "academic" as const,
       title: { zh: "小学校园治理研究", en: "Research on Primary School Campus Governance" },
       role: { zh: "主要研究员", en: "Core Researcher" },
       period: "2024 - 2026"
