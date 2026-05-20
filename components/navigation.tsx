@@ -19,7 +19,6 @@ export function Navigation() {
     { labelZh: '关于', labelEn: 'About', href: '#about' },
     { labelZh: '发表', labelEn: 'Publications', href: '#publications' },
     { labelZh: '项目', labelEn: 'Projects', href: '#projects' },
-    { labelZh: '服务', labelEn: 'Service', href: '#service' },
     { labelZh: '联系', labelEn: 'Contact', href: '#contact' },
   ]
 

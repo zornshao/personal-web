@@ -1,51 +1,37 @@
 'use client'
 
-import { useState } from 'react'
-import { Mail, Github, Linkedin, Send } from 'lucide-react'
+import { Mail, Linkedin, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { useLanguage } from '@/components/language-context'
+import { SITE_DATA } from '@/lib/site-data'
 
 export function ContactSection() {
   const { t } = useLanguage()
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const { personalInfo } = SITE_DATA
 
   const socialLinks = [
     {
       nameZh: '邮箱',
       nameEn: 'Email',
-      href: 'mailto:researcher@university.edu',
+      href: `mailto:${personalInfo.email}`,
       icon: Mail,
-      label: 'researcher@university.edu',
-    },
-    {
-      nameZh: 'GitHub',
-      nameEn: 'GitHub',
-      href: 'https://github.com',
-      icon: Github,
-      label: '@username',
+      label: personalInfo.email,
     },
     {
       nameZh: '领英',
       nameEn: 'LinkedIn',
-      href: 'https://linkedin.com',
+      href: personalInfo.linkedin,
       icon: Linkedin,
-      label: '/in/username',
+      label: 'LinkedIn Profile',
     },
   ]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('[v0] Form submitted:', formState)
-    // Reset form
-    setFormState({ name: '', email: '', message: '' })
+    // Handle form submission - in production, this would send to an API
   }
 
   return (
@@ -91,12 +77,12 @@ export function ContactSection() {
             {/* Additional Info */}
             <div className="p-6 rounded-lg bg-secondary/50 border border-border">
               <h3 className="font-medium text-foreground mb-2">
-                {t('办公时间', 'Office Hours')}
+                {t('合作咨询', 'Consultation')}
               </h3>
               <p className="text-sm text-muted-foreground">
                 {t(
-                  '可预约线上办公时间。如需研究讨论或咨询合作，请发送邮件预约。',
-                  'Virtual office hours available by appointment. Please email to schedule a meeting for research discussions or consulting inquiries.'
+                  '如需研究合作、行业咨询或学术讨论，请发送邮件详述您的需求。',
+                  'For research collaboration, industry consulting, or academic discussions, please email with details about your needs.'
                 )}
               </p>
             </div>
@@ -113,10 +99,6 @@ export function ContactSection() {
                 <Input
                   id="name"
                   placeholder={t('您的姓名', 'Your name')}
-                  value={formState.name}
-                  onChange={(e) =>
-                    setFormState({ ...formState, name: e.target.value })
-                  }
                   required
                 />
               </div>
@@ -127,10 +109,6 @@ export function ContactSection() {
                   id="email"
                   type="email"
                   placeholder={t('您的邮箱', 'your@email.com')}
-                  value={formState.email}
-                  onChange={(e) =>
-                    setFormState({ ...formState, email: e.target.value })
-                  }
                   required
                 />
               </div>
@@ -141,10 +119,6 @@ export function ContactSection() {
                   id="message"
                   placeholder={t('请输入您的留言...', 'How can I help you?')}
                   rows={4}
-                  value={formState.message}
-                  onChange={(e) =>
-                    setFormState({ ...formState, message: e.target.value })
-                  }
                   required
                 />
               </div>
@@ -162,22 +136,18 @@ export function ContactSection() {
 }
 
 export function Footer() {
-  const { t } = useLanguage()
+  const { t, isEnglish } = useLanguage()
+  const { personalInfo } = SITE_DATA
 
   const socialLinks = [
     {
       name: 'Email',
-      href: 'mailto:researcher@university.edu',
+      href: `mailto:${personalInfo.email}`,
       icon: Mail,
     },
     {
-      name: 'GitHub',
-      href: 'https://github.com',
-      icon: Github,
-    },
-    {
       name: 'LinkedIn',
-      href: 'https://linkedin.com',
+      href: personalInfo.linkedin,
       icon: Linkedin,
     },
   ]
@@ -187,7 +157,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} {t('学术主页', 'Academic Portfolio')}. {t('保留所有权利。', 'All rights reserved.')}
+            © {new Date().getFullYear()} {isEnglish ? personalInfo.name.en : personalInfo.name.zh}. {t('保留所有权利。', 'All rights reserved.')}
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((link) => (
