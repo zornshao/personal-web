@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { LanguageProvider } from '@/components/language-context'
 import './globals.css'
 
 const inter = Inter({ 
@@ -54,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="bg-background">
+    <html lang="zh-CN" suppressHydrationWarning className="bg-background">
       <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -62,7 +63,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

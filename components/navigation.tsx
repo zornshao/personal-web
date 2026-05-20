@@ -3,23 +3,25 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-
-const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Publications', href: '#publications' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Service', href: '#service' },
-  { label: 'Contact', href: '#contact' },
-]
+import { useLanguage } from '@/components/language-context'
 
 export function Navigation() {
   const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
+  const { isEnglish, toggleLanguage, t } = useLanguage()
+
+  const navItems = [
+    { labelZh: '关于', labelEn: 'About', href: '#about' },
+    { labelZh: '发表', labelEn: 'Publications', href: '#publications' },
+    { labelZh: '项目', labelEn: 'Projects', href: '#projects' },
+    { labelZh: '服务', labelEn: 'Service', href: '#service' },
+    { labelZh: '联系', labelEn: 'Contact', href: '#contact' },
+  ]
 
   useEffect(() => {
     setMounted(true)
@@ -46,24 +48,41 @@ export function Navigation() {
             href="/"
             className="text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
           >
-            Portfolio
+            {t('学术主页', 'Portfolio')}
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <Link
-                key={item.label}
+                key={item.href}
                 href={item.href}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                {item.label}
+                {t(item.labelZh, item.labelEn)}
               </Link>
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center gap-2">
+          {/* Language Toggle, Theme Toggle & Mobile Menu */}
+          <div className="flex items-center gap-1">
+            {/* Language Toggle */}
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleLanguage}
+                className="h-9 px-3 gap-1.5 text-xs font-medium"
+                aria-label="Toggle language"
+              >
+                <Globe className="h-3.5 w-3.5" />
+                <span className="transition-all duration-200">
+                  {isEnglish ? 'EN' : '中'}
+                </span>
+              </Button>
+            )}
+
+            {/* Theme Toggle */}
             {mounted && (
               <Button
                 variant="ghost"
@@ -103,12 +122,12 @@ export function Navigation() {
             <div className="flex flex-col gap-3">
               {navItems.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
-                  {item.label}
+                  {t(item.labelZh, item.labelEn)}
                 </Link>
               ))}
             </div>
