@@ -97,19 +97,35 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Content - Professional Photo */}
+         {/* Right Content - Professional Photo */}
           <div className="lg:col-span-2 flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl bg-gradient-to-br from-secondary to-muted overflow-hidden border border-border shadow-lg">
-                <div className="w-full h-full flex items-center justify-center bg-secondary/80">
-                  <div className="text-center space-y-3 p-6">
-                    <div className="w-28 h-28 mx-auto rounded-full bg-muted-foreground/10 flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
-                      <span className="text-3xl font-semibold text-muted-foreground">
-                        {renderField(personalInfo?.name)?.[0] || '邵'}
-                      </span>
+              <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl bg-gradient-to-br from-secondary to-muted overflow-hidden border border-border shadow-lg relative group">
+                {personalInfo?.wewebphoto ? (
+                  <img 
+                    src={personalInfo.avatar} 
+                    alt={renderField(personalInfo?.name)} 
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-secondary/80">
+                    <div className="text-center space-y-3 p-6">
+                      <div className="w-28 h-28 mx-auto rounded-full bg-muted-foreground/10 flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
+                        <span className="text-3xl font-semibold text-muted-foreground">
+                          {renderField(personalInfo?.name)?.[0] || '邵'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        {t('职业形象照', 'Professional Photo')}
+                      </p>
                     </div>
-                    <p className="text-xs text-muted-foreground">
-                      {t('职业形象照', 'Professional Photo')}
+                  </div>
+                )}
+              </div>
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+            </div>
+          </div>
                     </p>
                   </div>
                 </div>
