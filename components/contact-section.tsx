@@ -9,21 +9,30 @@ import { useLanguage } from '@/components/language-context'
 import { SITE_DATA } from '@/lib/site-data'
 
 export function ContactSection() {
-  const { t } = useLanguage()
-  const { personalInfo } = SITE_DATA
+  const { t, isEnglish } = useLanguage()
+  const { personalInfo } = SITE_DATA || {}
+
+  // 智能容错渲染函数，确保之后不管填什么都不会报错
+  const renderField = (field: any) => {
+    if (!field) return ''
+    if (typeof field === 'object') {
+      return isEnglish ? (field.en || field.zh || '') : (field.zh || field.en || '')
+    }
+    return String(field)
+  }
 
   const socialLinks = [
     {
       nameZh: '邮箱',
       nameEn: 'Email',
-      href: `mailto:${personalInfo.email}`,
+      href: personalInfo?.email ? `mailto:${personalInfo.email}` : '#',
       icon: Mail,
-      label: personalInfo.email,
+      label: personalInfo?.email || '',
     },
     {
       nameZh: '领英',
       nameEn: 'LinkedIn',
-      href: personalInfo.linkedin,
+      href: personalInfo?.linkedin || '#',
       icon: Linkedin,
       label: 'LinkedIn Profile',
     },
@@ -31,7 +40,6 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission - in production, this would send to an API
   }
 
   return (
@@ -131,17 +139,26 @@ export function ContactSection() {
 
 export function Footer() {
   const { t, isEnglish } = useLanguage()
-  const { personalInfo } = SITE_DATA
+  const { personalInfo } = SITE_DATA || {}
+
+  // 同样对 Footer 的名字字段加入最高级别的防崩溃机制
+  const renderField = (field: any) => {
+    if (!field) return ''
+    if (typeof field === 'object') {
+      return isEnglish ? (field.en || field.zh || '') : (field.zh || field.en || '')
+    }
+    return String(field)
+  }
 
   const socialLinks = [
     {
       name: 'Email',
-      href: `mailto:${personalInfo.email}`,
+      href: personalInfo?.email ? `mailto:${personalInfo.email}` : '#',
       icon: Mail,
     },
     {
       name: 'LinkedIn',
-      href: personalInfo.linkedin,
+      href: personalInfo?.linkedin || '#',
       icon: Linkedin,
     },
   ]
@@ -151,7 +168,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} {isEnglish ? personalInfo.name.en : personalInfo.name.zh}. {t('保留所有权利。', 'All rights reserved.')}
+            © {new Date().getFullYear()} {renderField(personalInfo?.name)}. {t('保留所有权利。', 'All rights reserved.')}
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((link) => (
