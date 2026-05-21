@@ -1,6 +1,6 @@
 export const SITE_DATA = {
   personalInfo: {
-    name: { zh: "邵卓仁", en: "Zhuoren Shao" },
+    name: { zh: "邵卓人", en: "Zhuoren Shao" },
     title: { zh: "博士研究员", en: "Doctoral Researcher" },
     bio: {
       zh: [
