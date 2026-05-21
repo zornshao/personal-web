@@ -101,7 +101,7 @@ export function HeroSection() {
           <div className="lg:col-span-2 flex justify-center lg:justify-end">
             <div className="relative">
               <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl bg-gradient-to-br from-secondary to-muted overflow-hidden border border-border shadow-lg relative group">
-                {personalInfo?.wewebphoto ? (
+                {personalInfo?.avatar ? (
                   <img 
                     src={personalInfo.avatar} 
                     alt={renderField(personalInfo?.name)} 
