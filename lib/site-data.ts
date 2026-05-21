@@ -4,9 +4,9 @@ export const SITE_DATA = {
     title: { zh: "博士研究员", en: "Doctoral Researcher" },
     bio: {
       zh: [
-        "我的研究致力于探索规范、技术与个体之间的互动关系。在攻读法学博士与社会学博士学位之前，我在中国和意大利取得了新闻传播学学士、法学学士与法学硕士的学位。",
+        "我的研究致力于探索规范、技术与个体之间的互动关系。在攻读法学博士与社会学博士学位之前，我在中国和意大利取得了新闻传播学学士、法学学士与法学硕士学位。",
         "目前，我的研究兴趣主要集中于法律社会学、知识产权法、数字政策与规制。基于在基础教育行业十年的创业与实践积淀，我也关注教育社会学相关议题。",
-        "此前，我曾在清华大学智能法治研究院、21世纪财经、Di Donna Law Firm、Libutti Trotta Law Firm担任研究助理或实习研究员。此外，我曾以青年召集人身份发起了'美丽乡村青年笔记''凉山青年书架'等公益项目，并担任头号地标、澎湃等新媒体平台的撰稿人或专栏主编。"
+        "此前，我在清华大学智能法治研究院、21财经、Di Donna Law Firm、Libutti Trotta Law Firm担任研究助理或实习研究员。此外，我曾以青年召集人身份发起了'美丽乡村青年笔记''凉山青年书架'等公益项目，并担任头号地标、澎湃等新媒体平台的撰稿人或专栏主编。"
       ],
       en: [
         "My research explores the interaction between norms, technology, and individuals. Prior to pursuing dual doctoral degrees in Law and Sociology, I completed undergraduate and graduate studies in China and Italy, earning a B.A. in Journalism and Communication, an LL.B., and an LL.M.",
@@ -30,13 +30,16 @@ export const SITE_DATA = {
           zh: "大学生应对高校个人信息收集的抵抗行为及其影响因素：基于fsQCA的组态分析", 
           en: "Configurational Analysis of College Students' Resistance to Personal Information Collection: Based on fsQCA" 
         },
-        source: "华东师范大学学报(教育科学版) / ECNU Review of Education",
+        source: {
+          zh: "华东师范大学学报(教育科学版) ",
+          en: "Joumal of East China Normal University (Educational Sciences)"
+        }
         year: "2025"
       },
       {
         id: "j2",
         title: { 
-          zh: "中国地方立法层面数据治理的扎根理论研究", 
+          zh: "A Grounded Theory Study of Data Governance at the Local Legislative Level in China", 
           en: "A Grounded Theory Study of Data Governance at the Local Legislative Level in China" 
         },
         source: "Forthcoming",
@@ -50,20 +53,20 @@ export const SITE_DATA = {
           zh: "Between Dependence and Security: Belt and Road EU States in the 5G Governance Dilemma", 
           en: "Between Dependence and Security: Belt and Road EU States in the 5G Governance Dilemma" 
         },
-        series: "Navigating the Geopolitics of Strategic Technology, Digital Law and Governance series",
+        series: "Navigating the Geopolitics of Strategic Technology, Digital Law and Governance Series",
         publisher: "Routledge",
-        year: "2025"
+        year: "2026"
       }
     ],
     conferences: [
       {
         id: "c1",
         title: { 
-          zh: "基层官僚与AI的使用：中国交通执法中'混合官僚制'的形成", 
+          zh: "Street-Level Bureaucrats and the Use of AI: The Making of 'Hybrid Bureaucracy' in Chinese Traffic Policing", 
           en: "Street-Level Bureaucrats and the Use of AI: The Making of 'Hybrid Bureaucracy' in Chinese Traffic Policing" 
         },
         conference: "2026 EASP Annual Conference",
-        year: "July 2026"
+        year: "2026"
       }
     ],
     media: [
@@ -96,9 +99,21 @@ export const SITE_DATA = {
   projects: [
     {
       id: "p1",
-      title: { zh: "小学校园治理研究", en: "Research on Primary School Campus Governance" },
+      title: { zh: "小学班级数字化管理与学生日常行为习惯养成", en: "Research on Primary School Campus Digital Governance and the development of students' daily habits" },
       role: { zh: "主要研究员", en: "Core Researcher" },
-      period: "2024 - 2026"
+      period: "2026 - 2027"
+    }
+    {
+      id: "p2",
+      title: { zh: "中国知识产权治理中的多元主体：制度变迁与行动逻辑", en: "Multiple Stakeholders in China's Intellectual Property Governance: Institutional Change and Action Logic" },
+      role: { zh: "主要研究员", en: "Core Researcher" },
+      period: "2026 - 2028"
+    }
+{
+      id: "p3",
+      title: { zh: "中国交通执法中的算法使用与民众的法律意识", en: "The use of algorithms in China's traffic law enforcement and public legal awareness" },
+      role: { zh: "主要研究员", en: "Core Researcher" },
+      period: "2025 - 2027"
     }
   ]
 }
