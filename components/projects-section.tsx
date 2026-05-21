@@ -8,7 +8,17 @@ import { SITE_DATA } from '@/lib/site-data'
 
 export function ProjectsSection() {
   const { t, isEnglish } = useLanguage()
-  const { projects } = SITE_DATA
+  // 防御性获取 projects 数组，确保即使 SITE_DATA 结构出问题也不会白屏
+  const projects = SITE_DATA?.projects || []
+
+  // 核心容错函数：智能判断数据是对象还是纯文本，确保随意更改不报错
+  const renderField = (field: any) => {
+    if (!field) return ''
+    if (typeof field === 'object') {
+      return isEnglish ? (field.en || field.zh || '') : (field.zh || field.en || '')
+    }
+    return String(field)
+  }
 
   return (
     <section id="projects" className="py-24">
@@ -21,22 +31,29 @@ export function ProjectsSection() {
 
         {projects.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <Card key={project.id} className="h-full hover:border-primary/50 transition-colors">
-                <CardHeader className="pb-4">
-                  <Badge variant="default" className="w-fit mb-3">
-                    {t('学术项目', 'Academic Research')}
-                  </Badge>
-                  <CardTitle className="text-lg leading-snug">
-                    {isEnglish ? project.title.en : project.title.zh}
-                  </CardTitle>
-                  <CardDescription className="flex items-center gap-2 text-xs">
-                    <Calendar className="h-3 w-3" />
-                    {project.period} · {isEnglish ? project.role.en : project.role.zh}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
+            {projects.map((project, index) => {
+              // 确保每个卡片都有唯一的 key，就算 id 漏写了也能正常渲染
+              const cardKey = project.id || `project-${index}`
+              
+              return (
+                <Card key={cardKey} className="h-full hover:border-primary/50 transition-colors">
+                  <CardHeader className="pb-4">
+                    <Badge variant="default" className="w-fit mb-3">
+                      {t('学术项目', 'Academic Research')}
+                    </Badge>
+                    <CardTitle className="text-lg leading-snug">
+                      {renderField(project.title)}
+                    </CardTitle>
+                    <CardDescription className="flex items-center gap-2 text-xs">
+                      <Calendar className="h-3 w-3" />
+                      {renderField(project.period)}
+                      {(project.period && project.role) && ' · '}
+                      {renderField(project.role)}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              )
+            })}
           </div>
         ) : (
           <div className="text-center py-12 text-muted-foreground">
