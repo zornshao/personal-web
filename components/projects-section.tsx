@@ -8,6 +8,7 @@ import { SITE_DATA } from '@/lib/site-data'
 
 export function ProjectsSection() {
   const { t, isEnglish } = useLanguage()
+  
   // 防御性获取 projects 数组，确保即使 SITE_DATA 结构出问题也不会白屏
   const projects = SITE_DATA?.projects || []
 
@@ -47,7 +48,10 @@ export function ProjectsSection() {
                     <CardDescription className="flex items-center gap-2 text-xs">
                       <Calendar className="h-3 w-3" />
                       {renderField(project.period)}
-                      {(project.period && project.role) && ' · '}
+                      
+                      {/* ✅ 终极修复：使用 !! 将对象转换为布尔值进行安全判断，彻底杜绝对象节点暴露引发编译闪退 */}
+                      {(!!project.period && !!project.role) && ' · '}
+                      
                       {renderField(project.role)}
                     </CardDescription>
                   </CardHeader>
