@@ -87,19 +87,19 @@ export const SITE_DATA = {
       { 
         id: "m2",
         title: { zh: "建议优化科技制造业融资环境", en: "Optimizing Financing Environment for Tech Manufacturing" }, 
-        outlet: "21世纪经济报道 / 21st Century Business Herald", 
+        outlet: { zh: "21世纪经济报道", en:"21st Century Business Herald"}, 
         year: "2025-03" 
       },
       { 
         id: "m3",
         title: { zh: "AI芯片新战场：英伟达的攻与守", en: "New Battleground for AI Chips: Nvidia's Offense and Defense" }, 
-        outlet: "21世纪经济报道 / 21st Century Business Herald", 
+        outlet: { zh: "21世纪经济报道", en:"21st Century Business Herald"}, 
         year: "2025-02" 
       },
       { 
         id: "m4",
         title: { zh: "芯片巨头交锋汽车赛道", en: "Chip Giants Clashing on the Automotive Track" }, 
-        outlet: "21世纪经济报道 / 21st Century Business Herald", 
+        outlet: { zh: "21世纪经济报道", en:"21st Century Business Herald"}, 
         year: "2025-01" 
       }
     ]
