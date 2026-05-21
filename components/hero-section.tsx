@@ -7,9 +7,39 @@ import { SITE_DATA } from '@/lib/site-data'
 
 export function HeroSection() {
   const { t, isEnglish } = useLanguage()
-  const { personalInfo } = SITE_DATA
+  const { personalInfo } = SITE_DATA || {}
 
-  const bioParagraphs = isEnglish ? personalInfo.bio.en : personalInfo.bio.zh
+  // 核心智能容错渲染函数：完美兼容 {zh, en} 对象和普通纯字符串
+  const renderField = (field: any) => {
+    if (!field) return ''
+    if (typeof field === 'object') {
+      return isEnglish ? (field.en || field.zh || '') : (field.zh || field.en || '')
+    }
+    return String(field)
+  }
+
+  // 强力防爆处理：解析多段落个人简介 (bio)
+  // 无论 bio 是数组还是单段落对象，甚至是普通字符串，都能完美平铺成数组进行渲染
+  const getBioParagraphs = () => {
+    if (!personalInfo?.bio) return []
+    
+    // 如果直接分了中英文数组
+    if (personalInfo.bio.zh || personalInfo.bio.en) {
+      const selectedBio = isEnglish ? personalInfo.bio.en : personalInfo.bio.zh
+      if (Array.isArray(selectedBio)) return selectedBio
+      if (typeof selectedBio === 'string') return [selectedBio]
+      return []
+    }
+    
+    // 如果整体是一个普通的数组
+    if (Array.isArray(personalInfo.bio)) return personalInfo.bio
+    
+    // 如果是个普通字符串
+    return [String(personalInfo.bio)]
+  }
+
+  const bioParagraphs = getBioParagraphs()
+  const affiliations = personalInfo?.affiliations || []
 
   return (
     <section id="about" className="min-h-screen flex items-center pt-20">
@@ -20,46 +50,50 @@ export function HeroSection() {
             {/* Name & Title */}
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl font-semibold text-foreground tracking-tight">
-                {isEnglish ? personalInfo.name.en : personalInfo.name.zh}
+                {renderField(personalInfo?.name)}
               </h1>
               <p className="text-lg text-primary font-medium">
-                {isEnglish ? personalInfo.title.en : personalInfo.title.zh}
+                {renderField(personalInfo?.title)}
               </p>
             </div>
 
             {/* Affiliations */}
             <div className="space-y-2">
-              {personalInfo.affiliations.map((affiliation, index) => (
+              {affiliations.map((affiliation: any, index: number) => (
                 <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Building2 className="h-3.5 w-3.5 shrink-0" />
-                  <span>{isEnglish ? affiliation.en : affiliation.zh}</span>
+                  <span>{renderField(affiliation)}</span>
                 </div>
               ))}
             </div>
 
             {/* Bio — multi-paragraph */}
             <div className="space-y-4">
-              {bioParagraphs.map((paragraph, index) => (
+              {bioParagraphs.map((paragraph: any, index: number) => (
                 <p key={index} className="text-muted-foreground leading-relaxed text-base">
-                  {paragraph}
+                  {renderField(paragraph)}
                 </p>
               ))}
             </div>
 
             {/* Contact Buttons */}
             <div className="flex flex-wrap gap-3 pt-4">
-              <Button variant="outline" size="sm" asChild>
-                <a href={`mailto:${personalInfo.email}`}>
-                  <Mail className="h-4 w-4 mr-2" />
-                  {personalInfo.email}
-                </a>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="h-4 w-4 mr-2" />
-                  LinkedIn
-                </a>
-              </Button>
+              {personalInfo?.email && (
+                <Button variant="outline" size="sm" asChild>
+                  <a href={`mailto:${personalInfo.email}`}>
+                    <Mail className="h-4 w-4 mr-2" />
+                    {personalInfo.email}
+                  </a>
+                </Button>
+              )}
+              {personalInfo?.linkedin && (
+                <Button variant="outline" size="sm" asChild>
+                  <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="h-4 w-4 mr-2" />
+                    LinkedIn
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
 
@@ -71,7 +105,7 @@ export function HeroSection() {
                   <div className="text-center space-y-3 p-6">
                     <div className="w-28 h-28 mx-auto rounded-full bg-muted-foreground/10 flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
                       <span className="text-3xl font-semibold text-muted-foreground">
-                        {isEnglish ? 'ZS' : '邵'}
+                        {renderField(personalInfo?.name)?.[0] || '邵'}
                       </span>
                     </div>
                     <p className="text-xs text-muted-foreground">
