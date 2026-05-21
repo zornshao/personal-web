@@ -87,7 +87,8 @@ export function Navigation() {
               >
                 <Globe className="h-3.5 w-3.5" />
                 <span className="transition-all duration-200">
-                  {isEnglish ? 'EN' : '中'}
+                  {/* 💡 完美修改交互逻辑：当前是英文（isEnglish为true）时按钮提示 '中'，当前是中文时按钮主动提示 'ENG' */}
+                  {isEnglish ? '中' : 'ENG'}
                 </span>
               </Button>
             )}
