@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Moon, Sun, Menu, X, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/components/language-context'
+import { SITE_DATA } from '@/lib/site-data'
 
 export function Navigation() {
   const [mounted, setMounted] = useState(false)
@@ -15,10 +15,21 @@ export function Navigation() {
   const { theme, setTheme } = useTheme()
   const { isEnglish, toggleLanguage, t } = useLanguage()
 
+  const { personalInfo } = SITE_DATA || {}
+
+  // 核心智能容错渲染函数：完美兼容 {zh, en} 对象和普通纯字符串，防止 Logo 名字崩溃
+  const renderField = (field: any) => {
+    if (!field) return ''
+    if (typeof field === 'object') {
+      return isEnglish ? (field.en || field.zh || '') : (field.zh || field.en || '')
+    }
+    return String(field)
+  }
+
   const navItems = [
     { labelZh: '关于', labelEn: 'About', href: '#about' },
-    { labelZh: '文章', labelEn: 'Selected Publications', href: '#publications' },
-    { labelZh: '项目', labelEn: 'Current Projects', href: '#projects' },
+    { labelZh: '发表', labelEn: 'Publications', href: '#publications' },
+    { labelZh: '项目', labelEn: 'Projects', href: '#projects' },
     { labelZh: '联系', labelEn: 'Contact', href: '#contact' },
   ]
 
@@ -42,24 +53,24 @@ export function Navigation() {
     >
       <nav className="mx-auto max-w-6xl px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
+          {/* 升级后的 Logo：智能展示学者姓名，且带全自动类型防御 */}
+          <a
+            href="#"
             className="text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
           >
-            {t('主页', 'Portfolio')}
-          </Link>
+            {renderField(personalInfo?.name) || t('主页', 'Portfolio')}
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {t(item.labelZh, item.labelEn)}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -120,14 +131,14 @@ export function Navigation() {
           <div className="md:hidden mt-4 pb-4 border-t border-border pt-4">
             <div className="flex flex-col gap-3">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {t(item.labelZh, item.labelEn)}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
