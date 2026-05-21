@@ -1,7 +1,7 @@
 export const SITE_DATA = {
   personalInfo: {
-    name: "邵卓人/Zhuoren Shao" ,
-    title: "博士研究员/Doctoral Researcher" ,
+    name: "邵卓人/Zhuoren Shao",
+    title: "博士研究员/Doctoral Researcher",
     bio: {
       zh: [
         "我的研究致力于探索规范、技术与个体之间的互动关系。在攻读法学博士与社会学博士学位之前，我在中国和意大利取得了新闻传播学学士、法学学士与法学硕士学位。",
@@ -20,11 +20,10 @@ export const SITE_DATA = {
       { zh: "香港理工大学社会政策与社会创业中心", en: "Centre for Social Policy and Social Entrepreneurship (CSPSE)" }
     ],
     email: "zorn@vip.163.com",
-    linkedin: "https://www.linkedin.com/in/zhuoren-shao-b7809237a/"
+    linkedin: "https://www.linkedin.com/in/zhuoren-shao-b7809237a/",
+    avatar: "/mywebphoto.jpg" // ✅ 完美修复：将 avatar 移回 personalInfo 大括号内部，对齐系统结构
   },
 
-avatar: "/mywebphoto.jpg", 
-  
   publications: {
     journals: [
       {
@@ -98,19 +97,20 @@ avatar: "/mywebphoto.jpg",
       }
     ]
   },
+  
   projects: [
     {
       id: "p1",
       title: { zh: "小学班级数字化管理与学生日常行为习惯养成", en: "Research on Primary School Campus Digital Governance and the development of students' daily habits" },
       role: { zh: "主要研究员", en: "Core Researcher" },
       period: "2026 - 2027"
-    }, // 错误 2 修复：加上了逗号
+    },
     {
       id: "p2",
       title: { zh: "中国知识产权治理中的多元主体：制度变迁与行动逻辑", en: "Multiple Stakeholders in China's Intellectual Property Governance: Institutional Change and Action Logic" },
       role: { zh: "主要研究员", en: "Core Researcher" },
       period: "2026 - 2028"
-    }, // 错误 3 修复：加上了逗号
+    },
     {
       id: "p3",
       title: { zh: "中国交通执法中的算法使用与民众的法律意识", en: "The use of algorithms in China's traffic law enforcement and public legal awareness" },
