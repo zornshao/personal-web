@@ -9,7 +9,6 @@ export function HeroSection() {
   const { t, isEnglish } = useLanguage()
   const { personalInfo } = SITE_DATA || {}
 
-  // 核心智能容错渲染函数：完美兼容 {zh, en} 对象和普通纯字符串
   const renderField = (field: any) => {
     if (!field) return ''
     if (typeof field === 'object') {
@@ -18,23 +17,15 @@ export function HeroSection() {
     return String(field)
   }
 
-  // 强力防爆处理：解析多段落个人简介 (bio)
-  // 无论 bio 是数组还是单段落对象，甚至是普通字符串，都能完美平铺成数组进行渲染
   const getBioParagraphs = () => {
     if (!personalInfo?.bio) return []
-    
-    // 如果直接分了中英文数组
     if (personalInfo.bio.zh || personalInfo.bio.en) {
       const selectedBio = isEnglish ? personalInfo.bio.en : personalInfo.bio.zh
       if (Array.isArray(selectedBio)) return selectedBio
       if (typeof selectedBio === 'string') return [selectedBio]
       return []
     }
-    
-    // 如果整体是一个普通的数组
     if (Array.isArray(personalInfo.bio)) return personalInfo.bio
-    
-    // 如果是个普通字符串
     return [String(personalInfo.bio)]
   }
 
@@ -45,9 +36,9 @@ export function HeroSection() {
     <section id="about" className="min-h-screen flex items-center pt-20">
       <div className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+
           {/* Left Content - Bio & Contact */}
           <div className="lg:col-span-3 space-y-8">
-            {/* Name & Title */}
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl font-semibold text-foreground tracking-tight">
                 {renderField(personalInfo?.name)}
@@ -57,7 +48,6 @@ export function HeroSection() {
               </p>
             </div>
 
-            {/* Affiliations */}
             <div className="space-y-2">
               {affiliations.map((affiliation: any, index: number) => (
                 <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -67,7 +57,6 @@ export function HeroSection() {
               ))}
             </div>
 
-            {/* Bio — multi-paragraph */}
             <div className="space-y-4">
               {bioParagraphs.map((paragraph: any, index: number) => (
                 <p key={index} className="text-muted-foreground leading-relaxed text-base">
@@ -76,7 +65,6 @@ export function HeroSection() {
               ))}
             </div>
 
-            {/* Contact Buttons */}
             <div className="flex flex-wrap gap-3 pt-4">
               {personalInfo?.email && (
                 <Button variant="outline" size="sm" asChild>
@@ -97,17 +85,16 @@ export function HeroSection() {
             </div>
           </div>
 
-{/* Right Content - Professional Photo */}
+          {/* Right Content - Professional Photo */}
           <div className="lg:col-span-2 flex justify-center lg:justify-end">
             <div className="relative">
               <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl bg-gradient-to-br from-secondary to-muted overflow-hidden border border-border shadow-lg relative group">
-                <img 
-                  src={personalInfo?.avatar || "/mywebphoto.jpg"} 
-                  alt="Professional Photo" 
+                <img
+                  src={personalInfo?.avatar || "/mywebphoto.jpg"}
+                  alt="Professional Photo"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   onError={(e) => {
-                    // 如果图片加载失败的降级处理
-                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.style.display = 'none'
                   }}
                 />
               </div>
@@ -115,14 +102,7 @@ export function HeroSection() {
               <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
             </div>
           </div>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl" />
-              <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-accent/10 rounded-full blur-3xl" />
-            </div>
-          </div>
+
         </div>
       </div>
     </section>
