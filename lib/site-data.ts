@@ -22,6 +22,9 @@ export const SITE_DATA = {
     email: "zorn@vip.163.com",
     linkedin: "https://www.linkedin.com/in/zhuoren-shao-b7809237a/"
   },
+
+avatar: "/mywebphoto.jpg", 
+  
   publications: {
     journals: [
       {
