@@ -47,7 +47,7 @@ export function Navigation() {
             href="/"
             className="text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
           >
-            {t('学术主页', 'Portfolio')}
+            {t('主页', 'Portfolio')}
           </Link>
 
           {/* Desktop Navigation */}
