@@ -28,7 +28,7 @@ export function Navigation() {
 
   const navItems = [
     { labelZh: '关于', labelEn: 'About', href: '#about' },
-    { labelZh: '发表', labelEn: 'Publications', href: '#publications' },
+    { labelZh: '文章', labelEn: 'Publications', href: '#publications' },
     { labelZh: '项目', labelEn: 'Projects', href: '#projects' },
     { labelZh: '联系', labelEn: 'Contact', href: '#contact' },
   ]
