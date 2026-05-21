@@ -40,7 +40,7 @@ export const SITE_DATA = {
         },
         source: {
           zh:"国家社科基金重大项目（23ZDA076），华东师范大学学报(教育科学版) ",
-          en: "National Social Science Fund of China (23ZDA076), Journal of East China Normal University (Educational Sciences)"
+          en: "Journal of East China Normal University (Educational Sciences)"
         },
         year: "2025"
       },
@@ -81,7 +81,7 @@ export const SITE_DATA = {
       { 
         id: "m1",
         title: { zh: "苹果夹缝生存：关税回旋镖下的闪转腾挪", en: "Apple's Survival: Maneuvering Under the Tariff Boomerang" }, 
-        outlet: "21世纪经济报道 / 21st Century Business Herald", 
+        outlet: { zh: "21世纪经济报道", en:"21st Century Business Herald"}, 
         year: "2025-04" 
       },
       { 
