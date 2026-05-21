@@ -35,7 +35,7 @@ export function ContactSection() {
           </h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
             {t(
-              '如需研究合作、行业咨询或学术讨论，欢迎随时取得联系。',
+              '如需合作、咨询或学术讨论，欢迎联系。',
               'Feel free to reach out for research collaboration, industry consulting, or academic discussions.'
             )}
           </p>
