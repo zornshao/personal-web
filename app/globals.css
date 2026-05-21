@@ -149,7 +149,15 @@
 [data-built-with-v0],
 .vercel-live-feedback-wrapper,
 #__vercel_toolbar,
-#__vercel_live_feedback {
+#__vercel_live_feedback,
+/* 以下是今天新增的强力覆盖选择器 */
+[data-v0-badge], 
+.v0-badge,
+[class*="v0-badge"],
+[class*="BuiltWithV0"],
+button[aria-label*="v0"],
+div[class*="fixed"][class*="bottom-4"] a[href*="v0.dev"],
+div[style*="position: fixed"] a[href*="v0.dev"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
