@@ -15,7 +15,7 @@ export function ProjectsSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12">
           <h2 className="text-3xl font-semibold text-foreground">
-            {t('研究与项目', 'Research & Projects')}
+            {t('研究项目', 'Research & Projects')}
           </h2>
         </div>
 
@@ -25,7 +25,7 @@ export function ProjectsSection() {
               <Card key={project.id} className="h-full hover:border-primary/50 transition-colors">
                 <CardHeader className="pb-4">
                   <Badge variant="default" className="w-fit mb-3">
-                    {t('学术课题', 'Academic Research')}
+                    {t('学术项目', 'Academic Research')}
                   </Badge>
                   <CardTitle className="text-lg leading-snug">
                     {isEnglish ? project.title.en : project.title.zh}
