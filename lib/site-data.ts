@@ -32,9 +32,7 @@ export const SITE_DATA = {
           zh: "大学生应对高校个人信息收集的抵抗行为及其影响因素：基于fsQCA的组态分析", 
           en: "Configurational Analysis of College Students' Resistance to Personal Information Collection: Based on fsQCA" 
         },
-        source: {
-          zh: "华东师范大学学报(教育科学版) /Joumal of East China Normal University (Educational Sciences)"
-        }, 
+        source: "华东师范大学学报(教育科学版) / Journal of East China Normal University (Educational Sciences)",
         year: "2025"
       },
       {
