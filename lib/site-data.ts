@@ -39,7 +39,7 @@ export const SITE_DATA = {
           en: "Configurational Analysis of College Students' Resistance to Personal Information Collection: Based on fsQCA" 
         },
         source: {
-          zh:"国家社科基金重大项目（23ZDA076），华东师范大学学报(教育科学版) ",
+          zh:"华东师范大学学报(教育科学版) ",
           en: "Journal of East China Normal University (Educational Sciences)"
         },
         year: "2025"
