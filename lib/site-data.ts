@@ -1,7 +1,13 @@
 export const SITE_DATA = {
   personalInfo: {
-    name: "邵卓人/Zhuoren Shao",
-    title: "博士研究员/Doctoral Researcher",
+    name: { 
+      zh: "邵卓人", 
+      en: "Zhuoren Shao" 
+    },
+    title: { 
+      zh: "博士研究员", 
+      en: "Doctoral Researcher" 
+    },
     bio: {
       zh: [
         "我的研究致力于探索规范、技术与个体之间的互动关系。在攻读法学博士与社会学博士学位之前，我在中国和意大利取得了新闻传播学学士、法学学士与法学硕士学位。",
