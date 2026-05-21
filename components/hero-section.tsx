@@ -109,4 +109,12 @@ export function HeroSection() {
                 />
               </div>
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl pointer-events-none" />
-              <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-accent/10 rounded-full blur-3xl pointer-events
+              <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )
+}
