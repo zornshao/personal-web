@@ -10,9 +10,9 @@ export const SITE_DATA = {
     },
     bio: {
       zh: [
-        "我的研究致力于探索规范、技术与个体之间的互动关系。在攻读法学博士与社会学博士学位之前，我在中国和意大利取得了新闻传播学学士、法学学士与法学硕士学位。",
-        "目前，我的研究兴趣主要集中于法律社会学、知识产权法、数字政策与规制。基于在基础教育行业十年的创业与实践积淀，我也关注教育社会学相关议题。",
-        "此前，我在清华大学智能法治研究院、21财经、Di Donna Law Firm、Libutti Trotta Law Firm担任研究助理或实习研究员。此外，我曾以青年召集人身份发起了'美丽乡村青年笔记''凉山青年书架'等公益项目，并担任头号地标、澎湃等新媒体平台的撰稿人或专栏主编。"
+        "我的研究致力于探索规范、技术与个体之间的互动关系。在攻读法学博士与社会学博士之前，我在中国和意大利取得了新闻传播学学士、法学学士与法学硕士学位。",
+        "我的研究兴趣主要集中于法律社会学、知识产权法、数字政策与规制。基于在基础教育行业十年的创业经验与实践关注，我也关注教育社会学的相关议题。",
+        "我曾在清华大学智能法治研究院、21财经、Di Donna Law Firm、Libutti Trotta Law Firm担任研究助理或实习研究员。此外，我以青年召集人身份发起了'美丽乡村青年笔记''凉山青年书架'等公益项目，并担任头号地标、澎湃等新媒体平台的撰稿人或专栏主编。"
       ],
       en: [
         "My research explores the interaction between norms, technology, and individuals. Prior to pursuing dual doctoral degrees in Law and Sociology, I completed undergraduate and graduate studies in China and Italy, earning a B.A. in Journalism and Communication, an LL.B., and an LL.M.",
