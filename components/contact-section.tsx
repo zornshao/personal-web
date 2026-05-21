@@ -1,25 +1,12 @@
 'use client'
 
-import { Mail, Linkedin, Send } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
+import { Mail, Linkedin } from 'lucide-react'
 import { useLanguage } from '@/components/language-context'
 import { SITE_DATA } from '@/lib/site-data'
 
 export function ContactSection() {
   const { t, isEnglish } = useLanguage()
   const { personalInfo } = SITE_DATA || {}
-
-  // 智能容错渲染函数，确保之后不管填什么都不会报错
-  const renderField = (field: any) => {
-    if (!field) return ''
-    if (typeof field === 'object') {
-      return isEnglish ? (field.en || field.zh || '') : (field.zh || field.en || '')
-    }
-    return String(field)
-  }
 
   const socialLinks = [
     {
@@ -38,99 +25,43 @@ export function ContactSection() {
     },
   ]
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-  }
-
   return (
-    <section id="contact" className="py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12">
+    <section id="contact" className="py-24 bg-secondary/10 border-t border-border/50">
+      <div className="mx-auto max-w-4xl px-6">
+        {/* 头部标题与描述全居中 */}
+        <div className="mb-12 text-center">
           <h2 className="text-3xl font-semibold text-foreground">
             {t('联系方式', 'Get in Touch')}
           </h2>
+          <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
+            {t(
+              '如需研究合作、行业咨询或学术讨论，欢迎随时取得联系。',
+              'Feel free to reach out for research collaboration, industry consulting, or academic discussions.'
+            )}
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Links */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.nameEn}
-                  href={link.href}
-                  target={link.nameEn !== 'Email' ? '_blank' : undefined}
-                  rel={link.nameEn !== 'Email' ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary/50 transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                    <link.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">
-                      {t(link.nameZh, link.nameEn)}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{link.label}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            {/* Additional Info */}
-            <div className="p-6 rounded-lg bg-secondary/50 border border-border">
-              <h3 className="font-medium text-foreground mb-2">
-                {t('合作咨询', 'Consultation')}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {t(
-                  '如需研究合作、行业咨询或学术讨论，请发送邮件详述您的需求。',
-                  'For research collaboration, industry consulting, or academic discussions, please email with details about your needs.'
-                )}
-              </p>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="bg-card rounded-xl border border-border p-6">
-            <h3 className="font-medium text-foreground mb-6">
-              {t('发送消息', 'Send a Message')}
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">{t('姓名', 'Name')}</Label>
-                <Input
-                  id="name"
-                  placeholder={t('您的姓名', 'Your name')}
-                  required
-                />
+        {/* 邮箱和领英并排横向撑满展示，移动端自动纵向叠放 */}
+        <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          {socialLinks.map((link) => (
+            <a
+              key={link.nameEn}
+              href={link.href}
+              target={link.nameEn !== 'Email' ? '_blank' : undefined}
+              rel={link.nameEn !== 'Email' ? 'noopener noreferrer' : undefined}
+              className="flex items-center gap-4 p-5 rounded-xl border border-border bg-card hover:border-primary/50 hover:bg-secondary/40 hover:shadow-sm transition-all duration-300 group"
+            >
+              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors shrink-0">
+                <link.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email">{t('邮箱', 'Email')}</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder={t('您的邮箱', 'your@email.com')}
-                  required
-                />
+              <div className="space-y-0.5 overflow-hidden">
+                <p className="font-medium text-foreground text-base">
+                  {t(link.nameZh, link.nameEn)}
+                </p>
+                <p className="text-sm text-muted-foreground break-all">{link.label}</p>
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">{t('留言', 'Message')}</Label>
-                <Textarea
-                  id="message"
-                  placeholder={t('请输入您的留言...', 'How can I help you?')}
-                  rows={4}
-                  required
-                />
-              </div>
-
-              <Button type="submit" className="w-full">
-                <Send className="h-4 w-4 mr-2" />
-                {t('发送消息', 'Send Message')}
-              </Button>
-            </form>
-          </div>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -141,7 +72,6 @@ export function Footer() {
   const { t, isEnglish } = useLanguage()
   const { personalInfo } = SITE_DATA || {}
 
-  // 同样对 Footer 的名字字段加入最高级别的防崩溃机制
   const renderField = (field: any) => {
     if (!field) return ''
     if (typeof field === 'object') {
@@ -164,7 +94,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="py-8 border-t border-border">
+    <footer className="py-8 border-t border-border bg-background">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
@@ -180,7 +110,7 @@ export function Footer() {
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label={link.name}
               >
-                <link.icon className="h-5 w-5" />
+                <link.icon className="h-4 w-4" />
               </a>
             ))}
           </div>
