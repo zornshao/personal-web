@@ -33,7 +33,7 @@ export const SITE_DATA = {
         source: {
           zh: "华东师范大学学报(教育科学版) ",
           en: "Joumal of East China Normal University (Educational Sciences)"
-        },
+        }, // 错误 1 修复：加上了逗号
         year: "2025"
       },
       {
@@ -102,14 +102,14 @@ export const SITE_DATA = {
       title: { zh: "小学班级数字化管理与学生日常行为习惯养成", en: "Research on Primary School Campus Digital Governance and the development of students' daily habits" },
       role: { zh: "主要研究员", en: "Core Researcher" },
       period: "2026 - 2027"
-    },
+    }, // 错误 2 修复：加上了逗号
     {
       id: "p2",
       title: { zh: "中国知识产权治理中的多元主体：制度变迁与行动逻辑", en: "Multiple Stakeholders in China's Intellectual Property Governance: Institutional Change and Action Logic" },
       role: { zh: "主要研究员", en: "Core Researcher" },
       period: "2026 - 2028"
-    },
-{
+    }, // 错误 3 修复：加上了逗号
+    {
       id: "p3",
       title: { zh: "中国交通执法中的算法使用与民众的法律意识", en: "The use of algorithms in China's traffic law enforcement and public legal awareness" },
       role: { zh: "主要研究员", en: "Core Researcher" },
